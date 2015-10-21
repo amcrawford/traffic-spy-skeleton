@@ -12,7 +12,7 @@ class Payload < ActiveRecord::Base
                         :ip,
                         :digest,
                         :source_id
-                        
+
   validates_uniqueness_of :digest
 
   belongs_to :sources

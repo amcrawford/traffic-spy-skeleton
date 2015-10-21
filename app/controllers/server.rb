@@ -24,7 +24,8 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do
-      if params.include?("payload")
+      # binding.pry
+      if params.include?("payload") && Source.exists?(:identifier => params["identifier"])
         digest = Digest::SHA2.hexdigest(params.to_s)
         source_id = Source.where(identifier: params["identifier"]).first.id
         parsed = JSON.parse(params["payload"])
@@ -52,6 +53,10 @@ module TrafficSpy
           status 400
           body payload.errors.full_messages.join(", ")
         end
+
+      elsif !Source.exists?(:identifier => params["identifier"])
+        status 403
+        body "Application not registered"
       else
         status 400
         body "Missing Payload"

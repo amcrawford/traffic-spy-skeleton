@@ -45,7 +45,10 @@ class ProcessingRequestTest < Minitest::Test
   end
 
   def test_request_application_not_registered_returns_forbidden
-    skip
+    post '/sources/turing/data', @complete_payload
+    assert_equal 0, Payload.count
+    assert_equal 403, last_response.status
+    assert_equal "Application not registered", last_response.body
   end
 
 end
