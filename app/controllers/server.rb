@@ -33,7 +33,7 @@ module TrafficSpy
                               responded_in: parsed["respondedIn"],
                               referred_by: parsed["referredBy"],
 
-                              .0request_type: parsed["requestType"],
+                              request_type: parsed["requestType"],
                               parameters: parsed["parameters"],
                               event_name: parsed["eventName"],
                               user_agent: parsed["userAgent"],
@@ -42,14 +42,20 @@ module TrafficSpy
                               ip: parsed["ip"],
                               digest: digest,
                               source_id: source_id)
-        payload.save
-        status 200
-        body ""
+        if payload.save
+          status 200
+          body ""
+        elsif payload.errors.full_messages.join(", ").include?("already been taken")
+          status 403
+          body payload.errors.full_messages.join(", ")
+        else
+          status 400
+          body payload.errors.full_messages.join(", ")
+        end
       else
         status 400
-        body payload.errors.full_messages.join(", ")
+        body "Missing Payload"
       end
-
     end
   end
 end

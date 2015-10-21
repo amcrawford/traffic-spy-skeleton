@@ -32,12 +32,16 @@ class ProcessingRequestTest < Minitest::Test
   def test_request_contains_missing_payload_returns_bad_request
     post '/sources/jumpstartlab/data', Hash.new
     assert_equal 400, last_response.status
-    assert_equal "IP can't be blank", last_response.body
+    assert_equal "Missing Payload", last_response.body
     assert_equal 0, Payload.count
   end
 
   def test_request_already_received_returns_forbidden
-    skip
+    post '/sources/jumpstartlab/data', @complete_payload
+    post '/sources/jumpstartlab/data', @complete_payload
+    assert_equal 1, Payload.count
+    assert_equal 403, last_response.status
+    assert_equal "Digest has already been taken", last_response.body
   end
 
   def test_request_application_not_registered_returns_forbidden
