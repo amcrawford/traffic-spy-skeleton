@@ -9,7 +9,7 @@ module TrafficSpy
     end
 
     post '/sources' do
-      # if valid params & not already in database
+      # if valid parsed & not already in database
       source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
       if source.save
         status 200
@@ -39,13 +39,6 @@ module TrafficSpy
                             resolution_width: parsed["resolutionWidth"],
                             resolution_height: parsed["resolutionHeight"],
                             ip: parsed["ip"],
-                            digest: digest
-                            # source_id: source.id
-                            )
-
-      binding.pry
-    end
-
-
+                            digest: digest)
   end
 end
