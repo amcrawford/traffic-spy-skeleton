@@ -25,18 +25,23 @@ module TrafficSpy
 
     post '/sources/:identifier/data' do
       digest = Digest::SHA2.hexdigest(params.to_s)
-      payload = Payload.new(url: params[:url],
-                            requested_at: params[:requestedAt],
-                            requested_in: params[:requestedIn],
-                            referred_by: params[:referredBy],
-                            request_type: params[:requestType],
-                            parameters: params[:parameters],
-                            event_name: params[:eventName],
-                            user_agent: params[:userAgent],
-                            resolution_width: params[:resolutionWidth],
-                            resolution_height: params[:resolution_height],
-                            ip: params[:ip],
-                            digest: digest)
+      # rollback or migrate - get rid of source_id, add foreign key
+      # source = Source.where...
+      parsed = JSON.parse(params["payload"])
+      payload = Payload.new(url: parsed["url"],
+                            requested_at: parsed["requestedAt"],
+                            responded_in: parsed["respondedIn"],
+                            referred_by: parsed["referredBy"],
+                            request_type: parsed["requestType"],
+                            parameters: parsed["parameters"],
+                            event_name: parsed["eventName"],
+                            user_agent: parsed["userAgent"],
+                            resolution_width: parsed["resolutionWidth"],
+                            resolution_height: parsed["resolutionHeight"],
+                            ip: parsed["ip"],
+                            digest: digest
+                            # source_id: source.id
+                            )
 
       binding.pry
     end
