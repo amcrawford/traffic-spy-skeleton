@@ -24,29 +24,30 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do
-      digest = Digest::SHA2.hexdigest(params.to_s)
-      # source = Source.where...
-      source_id = Source.where(identifier: params["identifier"]).first.id
-      # binding.pry
-      parsed = JSON.parse(params["payload"])
-      payload = Payload.new(url: parsed["url"],
-                            requested_at: parsed["requestedAt"],
-                            responded_in: parsed["respondedIn"],
-                            referred_by: parsed["referredBy"],
-                            request_type: parsed["requestType"],
-                            parameters: parsed["parameters"],
-                            event_name: parsed["eventName"],
-                            user_agent: parsed["userAgent"],
-                            resolution_width: parsed["resolutionWidth"],
-                            resolution_height: parsed["resolutionHeight"],
-                            ip: parsed["ip"],
-                            digest: digest,
-                            source_id: source_id)
-      if payload.save
+      if params.include?("payload")
+        digest = Digest::SHA2.hexdigest(params.to_s)
+        source_id = Source.where(identifier: params["identifier"]).first.id
+        parsed = JSON.parse(params["payload"])
+        payload = Payload.new(url: parsed["url"],
+                              requested_at: parsed["requestedAt"],
+                              responded_in: parsed["respondedIn"],
+                              referred_by: parsed["referredBy"],
+
+                              .0request_type: parsed["requestType"],
+                              parameters: parsed["parameters"],
+                              event_name: parsed["eventName"],
+                              user_agent: parsed["userAgent"],
+                              resolution_width: parsed["resolutionWidth"],
+                              resolution_height: parsed["resolutionHeight"],
+                              ip: parsed["ip"],
+                              digest: digest,
+                              source_id: source_id)
+        payload.save
         status 200
         body ""
       else
         status 400
+        body payload.errors.full_messages.join(", ")
       end
 
     end
