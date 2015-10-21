@@ -4,6 +4,16 @@ module TrafficSpy
       erb :index
     end
 
+    get '/sources/:identifier' do
+      if Source.exists?(:identifier => params["identifier"])
+        @message = "I exist" # TODO
+        urls = Payload.where(:source_id => Source.where(identifier: params["identifier"]).first.id)
+      else
+        @message = "I don't exist" # TODO
+      end
+      erb :details
+    end
+
     not_found do
       erb :error
     end
@@ -24,7 +34,6 @@ module TrafficSpy
     end
 
     post '/sources/:identifier/data' do
-      # binding.pry
       if params.include?("payload") && Source.exists?(:identifier => params["identifier"])
         digest = Digest::SHA2.hexdigest(params.to_s)
         source_id = Source.where(identifier: params["identifier"]).first.id
@@ -33,7 +42,6 @@ module TrafficSpy
                               requested_at: parsed["requestedAt"],
                               responded_in: parsed["respondedIn"],
                               referred_by: parsed["referredBy"],
-
                               request_type: parsed["requestType"],
                               parameters: parsed["parameters"],
                               event_name: parsed["eventName"],
