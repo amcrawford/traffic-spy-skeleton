@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20151021173410) do
     t.text    "url"
     t.text    "requested_at"
     t.text    "responded_in"
-    t.text    "reffered_by"
+    t.text    "referred_by"
     t.text    "request_type"
     t.text    "parameters"
     t.text    "event_name"

@@ -25,8 +25,9 @@ module TrafficSpy
 
     post '/sources/:identifier/data' do
       digest = Digest::SHA2.hexdigest(params.to_s)
-      # rollback or migrate - get rid of source_id, add foreign key
       # source = Source.where...
+      source_id = Source.where(identifier: params["identifier"]).first.id
+      # binding.pry
       parsed = JSON.parse(params["payload"])
       payload = Payload.new(url: parsed["url"],
                             requested_at: parsed["requestedAt"],
@@ -39,6 +40,15 @@ module TrafficSpy
                             resolution_width: parsed["resolutionWidth"],
                             resolution_height: parsed["resolutionHeight"],
                             ip: parsed["ip"],
-                            digest: digest)
+                            digest: digest,
+                            source_id: source_id)
+      if payload.save
+        status 200
+        body ""
+      else
+        status 400
+      end
+
+    end
   end
 end
