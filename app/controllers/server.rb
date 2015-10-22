@@ -37,6 +37,7 @@ module TrafficSpy
         digest = Digest::SHA2.hexdigest(params.to_s)
         source_id = Source.where(identifier: params["identifier"]).first.id
         parsed = JSON.parse(params["payload"])
+        binding.pry
         payload = Payload.new(url: parsed["url"],
                               requested_at: parsed["requestedAt"],
                               responded_in: parsed["respondedIn"],
