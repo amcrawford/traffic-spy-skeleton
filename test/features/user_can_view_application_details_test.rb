@@ -39,14 +39,24 @@ class ViewDetailsTest < FeatureTest
   def test_user_can_view_all_data_at_homepage
     visit '/sources/jumpstartlab'
     assert page.has_content?("Requested URLs")
+    assert page.has_content?("Web Browser Breakdown")
+    assert page.has_content?("OS Breakdown")
+    assert page.has_content?("Screen Resolution")
+    assert page.has_content?("Average URL Response Time")
+    assert page.has_content?("Links to URL Stats")
+    assert page.has_content?("Links to Event Stats")
   end
 
-  def test_user_registered_with_no_payload
-
+  def test_registered_user_with_no_payload_sees_error_message_and_no_data
+    skip
+    visit '/sources/jumpstartlab'
+    within('#data')
+      page.has_content?("Requested URLs")
   end
 
   def test_unregistered_user_returns_error_message
-
+    visit '/sources/google'
+    assert_equal ERROR MESSAGE
   end
 
 end

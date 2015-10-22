@@ -6,6 +6,7 @@ module TrafficSpy
 
     get '/sources/:identifier' do
       @source = Source.find_by(:identifier => params["identifier"])
+      @message = "Your Application Details"
       if !@source
         @message = "identifier does not exist" # TODO
       end
