@@ -15,5 +15,7 @@ class Source < ActiveRecord::Base
     results.sort_by { |k,v| -v }
   end
 
-
+  def web_browsers
+    user_agents= payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+  end
 end

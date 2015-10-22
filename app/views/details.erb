@@ -7,7 +7,7 @@
     <% end %>
   </div><br>
 <h2> Web Browser Breakdown  </h2>
-
+  <%= @source.web_browsers %>
 <h2> OS Breakdown  </h2>
 
 <h2> Screen Resolution  </h2>
@@ -16,6 +16,7 @@
   <% @source.average_response_times.each do |k,v| %>
     <%= "#{k}: #{v}" %><br>
   <% end %>
+  
 <h2> Links to URL Stats </h2>
 
 <h2> Links to Event Stats </h2>
