@@ -5,9 +5,9 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do
-      if Source.exists?(:identifier => params["identifier"])
+      @source = Source.find_by(identifier: params["identifier"])
+      if @source
         @message = "I exist" # TODO
-        urls = Payload.where(:source_id => Source.where(identifier: params["identifier"]).first.id)
       else
         @message = "I don't exist" # TODO
       end
