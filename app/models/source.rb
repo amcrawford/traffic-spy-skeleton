@@ -5,7 +5,6 @@ class Source < ActiveRecord::Base
   has_many :payloads
 
   def urls
-    binding.pry
     payloads.group("url").count # verify if this is sorting??
   end
 
@@ -15,4 +14,7 @@ class Source < ActiveRecord::Base
     payloads.sort_by {|payload| payload[1] }.reverse
   end
 
+  def web_browsers
+    user_agents= payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+  end
 end
