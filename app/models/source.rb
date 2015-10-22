@@ -16,6 +16,14 @@ class Source < ActiveRecord::Base
   end
 
   def web_browsers
-    user_agents= payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+    payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+  end
+
+  def os
+    payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).os}
+  end
+
+  def resolution
+    
   end
 end
