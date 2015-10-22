@@ -1,4 +1,21 @@
 <h1><%= @message %></h1>
 
-<h4> URLs  </h4>
+<h2> Requested URLs  </h2>
   <%= @source.urls %>
+
+<h2> Web Browser Breakdown  </h2>
+  <%= @source.user_agent_breakdown %>
+
+<h2> OS Breakdown  </h2>
+  <%= @source.user_agent %>
+  <%= @source.user_agent_os %>
+
+<h2> Screen Resolution  </h2>
+  <%= @source.user_agent_resolution_width * @source.user_agent_resolution_height %>
+
+<h2> Average URL Response Time  </h2>
+  <%= @source.user_agent_url_response %>
+
+<h2>Links to URL Stats</h2>
+
+<h2>Links to Event Stats</h2>

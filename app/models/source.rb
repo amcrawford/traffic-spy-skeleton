@@ -5,7 +5,6 @@ class Source < ActiveRecord::Base
   has_many :payloads
 
   def urls
-    urls = payloads.group("url").count
-    binding.pry
+    urls = payloads.group("url").count # verify if this is sorting??
   end
 end

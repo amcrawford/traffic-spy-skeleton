@@ -38,6 +38,15 @@ class ViewDetailsTest < FeatureTest
 
   def test_user_can_view_all_data_at_homepage
     visit '/sources/jumpstartlab'
-    # TODO
+    assert page.has_content?("Requested URLs")
   end
+
+  def test_user_registered_with_no_payload
+
+  end
+
+  def test_unregistered_user_returns_error_message
+
+  end
+
 end

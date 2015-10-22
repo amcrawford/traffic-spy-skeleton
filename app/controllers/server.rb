@@ -5,11 +5,9 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do
-      @source = Source.find_by(identifier: params["identifier"])
-      if @source
-        @message = "I exist" # TODO
-      else
-        @message = "I don't exist" # TODO
+      @source = Source.find_by(:identifier => params["identifier"])
+      if !@source
+        @message = "identifier does not exist" # TODO
       end
       erb :details
     end
