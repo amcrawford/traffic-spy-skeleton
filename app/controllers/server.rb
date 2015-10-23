@@ -19,11 +19,13 @@ module TrafficSpy
 
     post '/sources' do
       # if valid parsed & not already in database
-      source = Source.new(identifier: params[:identifier], root_url: params[:rootUrl])
+      source = Source.new(identifier: params[:identifier],
+                          root_url: params[:rootUrl])
       if source.save
         status 200
         body ({"identifier" => params[:identifier]}.to_json)
-      elsif source.errors.full_messages.join(", ").include?("already been taken")
+      elsif source.errors.full_messages.join(", ")
+                                       .include?("already been taken")
         status 403
         body source.errors.full_messages.join(", ")
       else
@@ -53,7 +55,8 @@ module TrafficSpy
         if payload.save
           status 200
           body ""
-        elsif payload.errors.full_messages.join(", ").include?("already been taken")
+        elsif payload.errors.full_messages.join(", ")
+                                          .include?("already been taken")
           status 403
           body payload.errors.full_messages.join(", ")
         else
