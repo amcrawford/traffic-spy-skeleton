@@ -28,6 +28,5 @@ class Source < ActiveRecord::Base
   def resolution
     resolution = payloads.select(:resolution_width, :resolution_height).map{|payload| "#{payload.resolution_width} X #{payload.resolution_height}"}
     resolution.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
-
   end
 end
