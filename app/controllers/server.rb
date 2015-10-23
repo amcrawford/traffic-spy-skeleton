@@ -1,4 +1,6 @@
 module TrafficSpy
+require 'uri'
+
   class Server < Sinatra::Base
     get '/' do
       erb :index
@@ -6,6 +8,7 @@ module TrafficSpy
 
     get '/sources/:identifier' do
       @source = Source.find_by(:identifier => params["identifier"])
+      @parsed_paths = @source.urls.map{|payload| URI(payload.first).path}
       @message = "Your Application Details"
       if !@source
         @message = "identifier does not exist" # TODO
