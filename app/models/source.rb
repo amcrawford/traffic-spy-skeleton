@@ -16,14 +16,18 @@ class Source < ActiveRecord::Base
   end
 
   def web_browsers
-    payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+    pay = payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).browser}
+    pay.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
   end
 
   def os
-    payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).os}
+    oss = payloads.select(:user_agent).map{|payload| UserAgent.parse(payload.user_agent).os}
+    oss.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
   end
 
   def resolution
-    
+    resolution = payloads.select(:resolution_width, :resolution_height).map{|payload| "#{payload.resolution_width} X #{payload.resolution_height}"}
+    resolution.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+
   end
 end
