@@ -7,7 +7,6 @@ require 'uri'
     end
 
     get '/sources/:identifier' do
-      binding.pry
       @source = Source.find_by(:identifier => params["identifier"])
       if !@source
         @message = "identifier does not exist" # TODO
