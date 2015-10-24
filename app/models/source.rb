@@ -25,6 +25,15 @@ class Source < ActiveRecord::Base
     pay.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
   end
 
+  def request_times(event_data)
+    hours = {}
+    24.times do |i|
+      hours[i] = 0
+    end
+    event_hours = event_data.map{|payload| DateTime.parse(payload.requested_at).hour}
+    event_hours.inject(hours) { |h, e| h[e] += 1 ; h }
+  end
+
   def os
     oss = payloads.select(:user_agent)
                   .map{|payload| UserAgent.parse(payload.user_agent).os}

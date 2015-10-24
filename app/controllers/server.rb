@@ -11,9 +11,15 @@ require 'uri'
     end
 
     get '/sources/:identifier' do
+      # validate user
+        # return status and body
+      # receive data and pass to view (as instance vars.)
+      # route to view
+
+
       @source = Source.find_by(:identifier => params["identifier"])
       if !@source
-        @message = "identifier does not exist" # TODO
+        @message = "identifier does not exist"
         erb :error
       else
         @message = "#{@source.identifier.capitalize}"
@@ -118,6 +124,9 @@ require 'uri'
       else
         @event_data = @source.payloads.where(:event_name =>  params["event"])
         if !@event_data.empty?
+          @message = "#{@event_data[0].event_name}"
+          @request_hours = @source.request_times(@event_data)
+          @total_received = @event_data.count
           erb :event_details
         else
           @message = "No event with the give name has been defined"

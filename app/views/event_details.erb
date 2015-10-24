@@ -1,1 +1,8 @@
 <h1> <%= @message %> </h1>
+
+<h2> Event Received <%=@event_data.count%> Times </h2>
+
+<h2> Hours Breakdown </h2>
+  <% @request_hours.each do |time, count| %>
+    <%= "#{time}: #{count}"%><br>
+    <%end%>
