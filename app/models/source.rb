@@ -9,9 +9,9 @@ class Source < ActiveRecord::Base
   end
 
   def average_response_times
-    something = payloads.group(:url).average(:responded_in)
+    average_response_times = payloads.group(:url).average(:responded_in)
     results = {}
-    something.each { |k,v| results[k] = v.to_i  }
+    average_response_times.each { |k,v| results[k] = v.to_i  }
     results.sort_by { |k,v| -v }
   end
 

@@ -1,4 +1,5 @@
 require 'database_cleaner'
+require 'tilt/erb'
 
 ENV["RACK_ENV"] ||= "test"
 
