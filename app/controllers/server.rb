@@ -82,9 +82,7 @@ require 'uri'
 
     get '/sources/:identifier/urls/:relative' do
       @source = Source.find_by(:identifier => params["identifier"])
-      full_url = "http://#{params[:"identifier"]}.com/#{params[:relative]}"
-      @url = @source.payloads.where(:url => full_url)
-      # binding.pry
+      @full_url = "#{@source.root_url}/#{params[:relative]}"
       if !@source
         @message = "url has not been requested"
         erb :error

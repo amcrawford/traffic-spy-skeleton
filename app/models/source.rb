@@ -33,14 +33,11 @@ class Source < ActiveRecord::Base
     resolution.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
   end
 
-  def longest_response_time
-    # pass in params (/blog)
-    # format params to match payload (googl./path)
-    #scope ()
-    payloads.select(:responded_in).max.responded_in
+  def longest_response_time(url)
+    payloads.where(:url => url).maximum("responded_in")
   end
 
-  def shortest_response_time
-    payloads.select(:responded_in).min.responded_in
+  def shortest_response_time(url)
+    payloads.where(:url => url).minimum("responded_in")
   end
 end
