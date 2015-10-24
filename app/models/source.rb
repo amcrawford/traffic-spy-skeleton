@@ -8,6 +8,10 @@ class Source < ActiveRecord::Base
     payloads.group("url").count.sort_by { |k,v| -v } # verify if this is sorting??
   end
 
+  def events
+    payloads.group("event_name").count.sort_by { |k,v| -v }
+  end
+
   def average_response_times
     average_response_times = payloads.group(:url).average(:responded_in)
     results = {}

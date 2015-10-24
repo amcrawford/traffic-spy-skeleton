@@ -96,5 +96,20 @@ require 'uri'
     #   erb :
     # end
 
+    get '/sources/:identifier/events' do
+      @source = Source.find_by(:identifier => params["identifier"])
+      if !@source
+        @message = "Identifier does not exist"
+        erb :error
+      end
+      @events = @source.events.to_h
+      if @events
+        erb :event_index
+      else
+        @message = "No events have been defined"
+        erb :error
+      end
+    end
+
   end
 end
