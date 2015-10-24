@@ -6,6 +6,10 @@ require 'uri'
       erb :index
     end
 
+    not_found do
+      erb :error
+    end
+
     get '/sources/:identifier' do
       @source = Source.find_by(:identifier => params["identifier"])
       if !@source
@@ -15,12 +19,7 @@ require 'uri'
         @message = "#{@source.identifier.capitalize}"
         @parsed_paths = @source.urls.map{ |payload| URI(payload.first).path }
         erb :details
-
       end
-    end
-
-    not_found do
-      erb :error
     end
 
     post '/sources' do
@@ -106,6 +105,24 @@ require 'uri'
           erb :event_index
         else
           @message = "No events have been defined"
+          erb :error
+        end
+      end
+    end
+
+    get '/sources/:identifier/events/:event' do
+      @source = Source.find_by(:identifier => params["identifier"])
+      if !@source
+        @message = "Identifier does not exist"
+        erb :error
+      else
+        @event_data = @source.payloads.where(:event_name =>  params["event"])
+        if !@event_data.empty?
+          erb :event_details
+        else
+          @message = "No event with the give name has been defined"
+          @link = "/sources/#{params["identifier"]}/events"
+          @link_message = "Events Index"
           erb :error
         end
       end
