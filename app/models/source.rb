@@ -32,4 +32,15 @@ class Source < ActiveRecord::Base
                          .map{|payload| "#{payload.resolution_width} X #{payload.resolution_height}"}
     resolution.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
   end
+
+  def longest_response_time
+    # pass in params (/blog)
+    # format params to match payload (googl./path)
+    #scope ()
+    payloads.select(:responded_in).max.responded_in
+  end
+
+  def shortest_response_time
+    payloads.select(:responded_in).min.responded_in
+  end
 end

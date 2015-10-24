@@ -7,6 +7,7 @@ require 'uri'
     end
 
     get '/sources/:identifier' do
+      binding.pry
       @source = Source.find_by(:identifier => params["identifier"])
       if !@source
         @message = "identifier does not exist" # TODO
@@ -78,5 +79,24 @@ require 'uri'
         body "Missing Payload"
       end
     end
+
+    get '/sources/:identifier/urls/:relative' do
+      @source = Source.find_by(:identifier => params["identifier"])
+      full_url = "http://#{params[:"identifier"]}.com/#{params[:relative]}"
+      @url = @source.payloads.where(:url => full_url)
+      # binding.pry
+      if !@source
+        @message = "url has not been requested"
+        erb :error
+      else
+        @message = "#{@source.root_url}/#{params[:relative]} - Page Details"
+        erb :url_stats
+      end
+    end
+
+    # get '/sources/:identifier/urls/:relative/:path' do
+    #   erb :
+    # end
+
   end
 end
