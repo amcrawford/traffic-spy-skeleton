@@ -15,7 +15,7 @@ require 'uri'
       end
       erb :details
     end
-
+    
     not_found do
       erb :error
     end

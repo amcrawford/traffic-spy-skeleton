@@ -5,7 +5,7 @@ class Source < ActiveRecord::Base
   has_many :payloads
 
   def urls
-    payloads.group("url").count # verify if this is sorting??
+    payloads.group("url").count.sort_by { |k,v| -v } # verify if this is sorting??
   end
 
   def average_response_times

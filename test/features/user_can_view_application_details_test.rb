@@ -37,6 +37,7 @@ class ViewDetailsTest < FeatureTest
   end
 
   def test_user_can_view_all_data_at_homepage
+    skip
     visit '/sources/jumpstartlab'
     assert page.has_content?("Requested URLs")
     assert page.has_content?("Web Browser Breakdown")
@@ -55,8 +56,8 @@ class ViewDetailsTest < FeatureTest
   end
 
   def test_unregistered_user_returns_error_message
+    skip
     visit '/sources/google'
     assert_equal ERROR MESSAGE
   end
-
 end
