@@ -44,4 +44,31 @@ class Source < ActiveRecord::Base
   def shortest_response_time(url)
     payloads.where(:url => url).minimum("responded_in")
   end
+
+  def average_response_time(url)
+    payloads.where(:url =>  url).average("responded_in")
+  end
+
+  def http_verbs_used(url)
+    payloads.where(:url => url).select(:request_type).all.map { |request| request.request_type }.uniq
+  end
+
+  def most_common_referrers(url)
+    referrers = payloads.where(:url => url).group(:referred_by).order('count_id DESC').limit(1).count(:id)
+  end
+
+  def most_common_os(url)
+    oss = payloads.where(:url => url).select(:user_agent)
+                  .map{|payload| UserAgent.parse(payload.user_agent).os}
+    popular_os = oss.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+    popular_os.invert.max[1]
+  end
+
+  def most_common_browser(url)
+    browser = payloads.where(:url => url).select(:user_agent)
+                  .map{|payload| UserAgent.parse(payload.user_agent).browser}
+    popular_browser = browser.inject(Hash.new(0)) { |h, e| h[e] += 1 ; h }
+    popular_browser.invert.max[1]
+  end
+
 end

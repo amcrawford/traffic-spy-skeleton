@@ -1,17 +1,25 @@
 <h1> <%= @message %> </h1>
 
 <h2>  Longest Response Time  </h2>
-
 <%=@source.longest_response_time(@full_url)%><br>
-
 
 <h2> Shortest Response Time </h2>
 <%=@source.shortest_response_time(@full_url)%><br>
 
 <h2> Average Response Time </h2>
+<%=@source.average_response_time(@full_url)%><br>
 
 <h2> HTTP Verbs Have Been Used </h2>
+<% @source.http_verbs_used(@full_url).each do |type| %>
+  <%= "#{type}" %><br>
+<% end %>
 
-<h2> Most Popular Referrers </h2>
+<h2> Most Popular Referrer </h2>
+<%referrer = @source.most_common_referrers(@full_url)%>
+  <%= "#{referrer.keys[0]}" %><br>
 
-<h2> Most Popular User Agents </h2>
+<h2> Most Popular User Agent </h2>
+  Most Popular OS:
+  <%= @source.most_common_os(@full_url) %><br>
+  Most Popular Browser:
+  <%= @source.most_common_browser(@full_url) %>
