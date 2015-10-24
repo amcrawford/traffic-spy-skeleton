@@ -1,5 +1,5 @@
 <h1>Event Index</h1>
 
 <% @events.each do |event, count| %>
-  <%= "#{count}: #{event}" %><br>
+  <a href='<%= "events/#{event}" %>' id='<%="#{event}_link"%>'><%="#{event}: #{count}" %></a><br>
 <% end %>

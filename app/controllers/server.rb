@@ -100,13 +100,14 @@ require 'uri'
       if !@source
         @message = "Identifier does not exist"
         erb :error
-      end
-      @events = @source.events.to_h
-      if @events
-        erb :event_index
       else
-        @message = "No events have been defined"
-        erb :error
+        @events = @source.events.to_h
+        if !@events.empty?
+          erb :event_index
+        else
+          @message = "No events have been defined"
+          erb :error
+        end
       end
     end
 
