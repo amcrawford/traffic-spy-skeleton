@@ -8,8 +8,8 @@ require 'uri'
 
     get '/sources/:identifier' do
       @source = Source.find_by(:identifier => params["identifier"])
-      @parsed_paths = @source.urls.map{|payload| URI(payload.first).path}
-      @message = "Your Application Details"
+      @parsed_paths = @source.urls.map{ |payload| URI(payload.first).path }
+      @message = "#{@source.identifier.capitalize}"
       if !@source
         @message = "identifier does not exist" # TODO
       end
