@@ -54,7 +54,7 @@ class Parser
         @status = 200
         @body = ""
       elsif payload.errors.full_messages.join(", ")
-        .include?("already been taken")
+                                        .include?("already been taken")
         @status = 403
         @body = payload.errors.full_messages.join(", ")
       else
@@ -68,24 +68,6 @@ class Parser
     else
       @status = 400
       @body = "Missing Payload"
-    end  
+    end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
