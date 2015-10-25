@@ -1,28 +1,28 @@
 <h1> <%= @message %> </h1>
 
 <h2> Requested URLs  </h2>
-  <% @source.urls.each do |url, count| %>
-    <%= "#{url}: #{count}" %><br>
+  <% @source.urls.each do |data, count| %>
+    <%= erb :'partials/_print_list', locals: {data: data, count: count} %>
   <% end %>
 
 <h2> Web Browser Breakdown  </h2>
-  <% @source.web_browsers.each do |browser, count| %>
-    <%= "#{browser}: #{count}" %><br>
+  <% @source.web_browsers.each do |data, count| %>
+  <%= erb :'partials/_print_list', locals: {data: data, count: count} %>
   <% end %>
 
 <h2> OS Breakdown  </h2>
-  <% @source.os.each do |os, count| %>
-    <%= "#{os}: #{count}" %><br>
+  <% @source.os.each do |data, count| %>
+  <%= erb :'partials/_print_list', locals: {data: data, count: count} %>
   <% end %>
 
 <h2> Screen Resolution  </h2>
-  <% @source.resolution.each do |res, count| %>
-    <%= "#{res}: #{count}" %> <br>
+  <% @source.resolution.each do |data, count| %>
+  <%= erb :'partials/_print_list', locals: {data: data, count: count} %>
   <% end %>
 
 <h2> Average URL Response Time  </h2>
-  <% @source.average_response_times.each do |k,v| %>
-    <%= "#{k}: #{v}" %><br>
+  <% @source.average_response_times.each do |data,count| %>
+  <%= erb :'partials/_print_list', locals: {data: data, count: count} %>
   <% end %>
 
 <h2> Links to URL Stats </h2>
