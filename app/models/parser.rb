@@ -29,7 +29,7 @@ class Parser
     Source.exists?(:identifier => @params["identifier"])
   end
 
-  def validate_params_contain_payload(param_fields)
+  def validate_params_contain_payload
     @params.include?("payload")
   end
 
