@@ -6,6 +6,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pry'
 gem 'useragent'
+gem 'simplecov'
 
 group :development, :test do
   gem 'shotgun'

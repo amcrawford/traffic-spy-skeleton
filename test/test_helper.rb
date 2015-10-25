@@ -1,5 +1,7 @@
 require 'database_cleaner'
+require 'simplecov'
 require 'tilt/erb'
+SimpleCov.start
 
 ENV["RACK_ENV"] ||= "test"
 
