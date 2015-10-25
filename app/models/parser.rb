@@ -68,7 +68,7 @@ class Parser
     else
       @status = 400
       @body = "Missing Payload"
-    end
+    end  
   end
 
 
