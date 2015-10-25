@@ -1,9 +1,11 @@
 require './test/test_helper'
+require './test/payload_samples.rb'
 
 class ViewEventIndex < MiniTest::Test
   include Rack::Test::Methods
 
   def setup
+    post '/sources', PayloadSamples.register_users
 
   end
 
