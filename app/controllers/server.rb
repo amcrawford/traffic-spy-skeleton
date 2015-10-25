@@ -78,11 +78,16 @@ require 'uri'
       @source = Source.find_by(:identifier => params["identifier"])
       @full_url = "#{@source.root_url}/#{params[:relative]}"
       if !@source
-        @message = "url has not been requested"
+        @message = "Identifier does not exist"
         erb :error
       else
-        @message = "#{@source.root_url}/#{params[:relative]} - Page Details"
-        erb :url_stats
+        if @source.payloads.where(:url => @full_url).empty?
+          @message = "url has not been requested"
+          erb :error
+        else
+          @message = "#{@source.root_url}/#{params[:relative]} - Page Details"
+          erb :url_stats
+        end
       end
     end
 
