@@ -11,21 +11,11 @@ require 'uri'
     end
 
     get '/sources/:identifier' do
-      # validate user
-        # return status and body
-      # receive data and pass to view (as instance vars.)
-      # route to view
-
-
-      @source = Source.find_by(:identifier => params["identifier"])
-      if !@source
-        @message = "identifier does not exist"
-        erb :error
-      else
-        @message = "#{@source.identifier.capitalize}"
-        @parsed_paths = @source.urls.map{ |payload| URI(payload.first).path }
-        erb :details
-      end
+      parser = Parser.new(params)
+      @source = parser.source
+      @message = parser.message
+      @parsed_paths = parser.parsed_paths
+      erb parser.view
     end
 
     post '/sources' do
