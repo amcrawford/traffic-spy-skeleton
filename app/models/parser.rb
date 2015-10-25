@@ -1,3 +1,4 @@
+require_relative 'source'
 class Parser
   attr_accessor :status, :body
   def initialize(params)
@@ -28,9 +29,27 @@ class Parser
     Source.exists?(:identifier => @params["identifier"])
   end
 
-  def validate_params_contain_payload
+  def validate_params_contain_payload(param_fields)
     @params.include?("payload")
   end
+
+  def post_source
+    source = Source.new(identifier: @params[:identifier],
+                        root_url: @params[:rootUrl])
+    if source.save
+      @status = 200
+      @body = ({"identifier" => @params[:identifier]}.to_json)
+    elsif source.errors.full_messages.join(", ")
+                                     .include?("already been taken")
+      @status = 403
+      @body = source.errors.full_messages.join(", ")
+    else
+      @status = 400
+      @body = source.errors.full_messages.join(", ")
+    end
+  end
+
+
 
   def post_payload
     if validate_params_contain_payload && validate_user_is_registered
@@ -70,22 +89,4 @@ class Parser
       @body = "Missing Payload"
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
