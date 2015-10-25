@@ -47,13 +47,11 @@ class ViewDetailsTest < FeatureTest
     assert page.has_content?("OS Breakdown")
     assert page.has_content?("OS X 10.8.2: 2")
 
-
     assert page.has_content?("Screen Resolution")
     assert page.has_content?("1920 X 1280: 2")
 
     assert page.has_content?("Average URL Response Time")
     assert page.has_content?("http://jumpstartlab.com/team: 37")
-
 
     assert page.has_content?("Links to URL Stats")
     assert page.has_content?("http://jumpstartlab.com/team")
