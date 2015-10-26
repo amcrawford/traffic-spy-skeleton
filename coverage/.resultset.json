@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/jasonpilz/code/traffic-spy-skeleton/config/environment.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/config/environment.rb": [
         null,
         1,
         1,
@@ -29,7 +29,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/controllers/server.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/controllers/server.rb": [
         1,
         1,
         null,
@@ -121,7 +121,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/campaign.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/campaign.rb": [
         1,
         1,
         null,
@@ -131,7 +131,7 @@
         1,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/campaign_details_parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/campaign_details_parser.rb": [
         1,
         1,
         2,
@@ -171,7 +171,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/campaign_parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/campaign_parser.rb": [
         1,
         1,
         null,
@@ -238,14 +238,14 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/event.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/event.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/event_details_parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/event_details_parser.rb": [
         1,
         null,
         1,
@@ -277,7 +277,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/source.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/source.rb": [
         1,
         1,
         null,
@@ -380,7 +380,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/event_parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/event_parser.rb": [
         1,
         null,
         1,
@@ -410,7 +410,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/parser.rb": [
         1,
         null,
         1,
@@ -497,7 +497,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/payload.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/payload.rb": [
         1,
         1,
         null,
@@ -517,7 +517,7 @@
         1,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/app/models/url_parser.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/app/models/url_parser.rb": [
         1,
         null,
         1,
@@ -552,7 +552,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/config/database.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/config/database.rb": [
         null,
         1,
         1,
@@ -568,7 +568,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/payload_samples.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/payload_samples.rb": [
         1,
         1,
         null,
@@ -601,7 +601,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/controllers/processing_request_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/controllers/processing_request_test.rb": [
         1,
         1,
         null,
@@ -643,7 +643,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/controllers/register_account_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/controllers/register_account_test.rb": [
         1,
         null,
         1,
@@ -693,7 +693,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/controllers/register_campaign_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/controllers/register_campaign_test.rb": [
         1,
         null,
         1,
@@ -757,7 +757,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_application_details_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_application_details_test.rb": [
         1,
         null,
         1,
@@ -823,7 +823,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_campaign_details_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_campaign_details_test.rb": [
         1,
         null,
         1,
@@ -851,7 +851,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_campaigns_index_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_campaigns_index_test.rb": [
         1,
         null,
         1,
@@ -898,7 +898,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_event_details_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_event_details_test.rb": [
         1,
         1,
         null,
@@ -928,7 +928,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_events_index_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_events_index_test.rb": [
         1,
         1,
         null,
@@ -957,7 +957,7 @@
         null,
         null
       ],
-      "/Users/jasonpilz/code/traffic-spy-skeleton/test/features/user_can_view_url_specific_details_test.rb": [
+      "/Users/ambercrawford/turing/module_two/traffic-spy-skeleton/test/features/user_can_view_url_specific_details_test.rb": [
         1,
         1,
         null,
@@ -999,6 +999,6 @@
         null
       ]
     },
-    "timestamp": 1445871842
+    "timestamp": 1445871999
   }
 }
