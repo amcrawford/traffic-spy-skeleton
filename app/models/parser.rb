@@ -1,4 +1,5 @@
 require_relative 'source'
+
 class Parser
   attr_accessor :status, :body
   def initialize(params)
@@ -10,15 +11,11 @@ class Parser
   end
 
   def message
-    if !source
-      "identifier does not exist"
-    else
-      "#{source.identifier.capitalize}"
-    end
+    source ? "#{source.identifier.capitalize}" : "Identifier does not exist"
   end
 
   def view
-    !source ? :error : :details
+    source ? :details : :error
   end
 
   def parsed_paths
@@ -49,12 +46,8 @@ class Parser
     end
   end
 
-
-
   def post_payload
     if validate_params_contain_payload && validate_user_is_registered
-      digest = Digest::SHA2.hexdigest(@params.to_s)
-      source_id = Source.where(identifier: @params["identifier"]).first.id
       parsed = JSON.parse(@params["payload"])
       payload = Payload.new(url: parsed["url"],
                             requested_at: parsed["requestedAt"],
@@ -67,8 +60,8 @@ class Parser
                             resolution_width: parsed["resolutionWidth"],
                             resolution_height: parsed["resolutionHeight"],
                             ip: parsed["ip"],
-                            digest: digest,
-                            source_id: source_id)
+                            digest: Digest::SHA2.hexdigest(@params.to_s),
+                            source_id: source.id)
       if payload.save
         @status = 200
         @body = ""
@@ -77,11 +70,11 @@ class Parser
         @status = 403
         @body = payload.errors.full_messages.join(", ")
       else
-        @status =  400
+        @status = 400
         @body = payload.errors.full_messages.join(", ")
       end
 
-    elsif !Source.exists?(:identifier => @params["identifier"])
+    elsif !validate_user_is_registered
       @status = 403
       @body = "Application not registered"
     else

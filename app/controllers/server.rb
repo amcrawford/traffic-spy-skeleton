@@ -61,5 +61,30 @@ require 'uri'
       erb parser.view
     end
 
+# CAMPAIGNS
+    post '/sources/:identifier/campaigns' do
+      campaign_parser = CampaignParser.new(params)
+      campaign_parser.register_campaign
+      status campaign_parser.status
+      body campaign_parser.body
+    end
+
+    get '/sources/:identifier/campaigns' do
+      parser = CampaignParser.new(params)
+      @source = parser.source
+      @campaigns = parser.list_campaigns
+      @message = parser.message
+      erb parser.view
+    end
+
+    get '/sources/:identifier/campaigns/:campaign' do
+      parser = CampaignDetailsParser.new(params)
+      @events = parser.campaign_events
+      @message = parser.message
+      @link = parser.link
+      @link_message = "Campaign Index"
+      erb parser.view
+    end
+
   end
 end

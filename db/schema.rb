@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022202427) do
+ActiveRecord::Schema.define(version: 20151025062052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaigns", force: :cascade do |t|
+    t.text    "name"
+    t.text    "digest"
+    t.integer "source_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.text    "name"
+    t.integer "campaign_id"
+  end
 
   create_table "payloads", force: :cascade do |t|
     t.text    "url"
@@ -37,5 +48,7 @@ ActiveRecord::Schema.define(version: 20151022202427) do
     t.text "root_url"
   end
 
+  add_foreign_key "campaigns", "sources"
+  add_foreign_key "events", "campaigns"
   add_foreign_key "payloads", "sources"
 end

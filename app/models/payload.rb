@@ -15,6 +15,4 @@ class Payload < ActiveRecord::Base
 
   validates_uniqueness_of :digest
   belongs_to :sources
-
-  
 end

@@ -1,4 +1,5 @@
 require_relative 'source'
+
 class EventDetailsParser
   attr_accessor :status, :body
   def initialize(params)

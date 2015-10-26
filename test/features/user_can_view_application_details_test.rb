@@ -47,7 +47,7 @@ class ViewDetailsTest < FeatureTest
 
   def test_unregistered_user_returns_error_message
     visit '/sources/google'
-    assert page.has_content? "identifier does not exist"
+    assert page.has_content? "Identifier does not exist"
   end
 
   def test_url_links_redirect_to_individual_stat_pages
